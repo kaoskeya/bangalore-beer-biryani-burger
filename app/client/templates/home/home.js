@@ -2,6 +2,9 @@
 /* Home: Event Handlers */
 /*****************************************************************************/
 Template.Home.events({
+	'click #login': function() {
+		Meteor.loginWithFacebook({ loginStyle: "popup" });
+	}
 });
 
 /*****************************************************************************/
