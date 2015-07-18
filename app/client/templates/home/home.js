@@ -3,7 +3,7 @@
 /*****************************************************************************/
 Template.Home.events({
 	'click #login': function() {
-		Meteor.loginWithFacebook({ loginStyle: "popup" });
+		Meteor.loginWithFacebook({ loginStyle: "popup", requestPermissions: [ "public_profile", "email", "user_friends" ] });
 	},
 	'click #logout': function() {
 		Meteor.logout();

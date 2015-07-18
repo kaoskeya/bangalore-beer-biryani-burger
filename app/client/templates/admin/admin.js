@@ -27,6 +27,21 @@ Template.AdminAddItem.created = function () {
 	this.subscribe("restaurants");
 };
 
+Template.AdminAddItem.rendered = function() {
+	AutoForm.hooks({
+		AdminAddItemForm: {
+			onSuccess: function(operation, result, template) {
+				$('#cancelAction').trigger('click');
+				toastr.success('Action completed');
+			},
+			onError: function(operation, error, template) {
+				console.log(error)
+				toastr.error(error.error)
+			}
+		}
+	});
+}
+
 Template.AdminAddItem.helpers({
 	restaurantList: function() {
 		return Restaurant.find().map(function(r){
