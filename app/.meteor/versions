@@ -15,6 +15,7 @@ blaze-tools@1.0.3
 boilerplate-generator@1.0.3
 callback-hook@1.0.3
 check@1.0.5
+chrismbeckett:toastr@2.1.0
 coffeescript@1.0.6
 dburles:google-maps@1.1.1
 ddp@1.1.0
@@ -37,6 +38,7 @@ iron:router@1.0.9
 iron:url@1.0.9
 jquery@1.11.3_2
 json@1.0.3
+kaoskeya:admin@0.2.4_7
 launch-screen@1.0.2
 less@1.0.14
 livedata@1.0.13
@@ -49,6 +51,8 @@ minimongo@1.0.8
 mobile-status-bar@1.0.3
 momentjs:moment@2.8.4
 mongo@1.1.0
+nemo64:bootstrap@3.3.5_2
+nemo64:bootstrap-data@3.3.5
 oauth@1.1.4
 oauth2@1.1.3
 observe-sequence@1.0.6
@@ -58,12 +62,15 @@ reactive-dict@1.1.0
 reactive-var@1.0.5
 reload@1.1.3
 retry@1.0.3
+reywood:publish-composite@1.3.6
 routepolicy@1.0.5
+sacha:spin@2.0.4
 service-configuration@1.0.4
 session@1.1.0
 spacebars@1.0.6
 spacebars-compiler@1.0.6
 templating@1.1.1
+tmeasday:publish-counts@0.4.0
 tracker@1.0.7
 ui@1.0.6
 underscore@1.0.3

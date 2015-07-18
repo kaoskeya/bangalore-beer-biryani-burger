@@ -9,7 +9,15 @@ Restaurant.attachSchema(new SimpleSchema({
   },
   "location.coordinates" : {
     type: [Number],
-    decimal: true
+    decimal: true,
+    autoform: {
+      type: 'map',
+      afFieldInput: {
+        geolocation: true,
+        searchBox: true,
+        autolocate: true
+      }
+    }
   },
   "location.type" : {
     type: String,
@@ -20,29 +28,29 @@ Restaurant.attachSchema(new SimpleSchema({
 if (Meteor.isServer) {
   Restaurant.allow({
     insert: function (userId, doc) {
-      return false;
+      return Roles.userIsInRole(userId, [ "admin" ]);
     },
 
     update: function (userId, doc, fieldNames, modifier) {
-      return false;
+      return Roles.userIsInRole(userId, [ "admin" ]);
     },
 
     remove: function (userId, doc) {
-      return false;
+      return Roles.userIsInRole(userId, [ "admin" ]);
     }
   });
 
   Restaurant.deny({
     insert: function (userId, doc) {
-      return true;
+      return !Roles.userIsInRole(userId, [ "admin" ]);
     },
 
     update: function (userId, doc, fieldNames, modifier) {
-      return true;
+      return !Roles.userIsInRole(userId, [ "admin" ]);
     },
 
     remove: function (userId, doc) {
-      return true;
+      return !Roles.userIsInRole(userId, [ "admin" ]);
     }
   });
 }

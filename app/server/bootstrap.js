@@ -1,3 +1,3 @@
 Meteor.startup(function () {
-	Roles.addUsersToRoles("nhuNreBumxam6xCZ7", ["admin"]);
+	// Roles.addUsersToRoles("nhuNreBumxam6xCZ7", ["admin"]);
 });

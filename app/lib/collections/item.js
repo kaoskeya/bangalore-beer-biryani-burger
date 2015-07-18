@@ -22,19 +22,15 @@ Item.attachSchema(new SimpleSchema({
     allowedValues: [ "Beer", "Biryani", "Burger" ]
   },
   approved: {
-    type: String
+    type: Boolean
   },
-  addedBy: {
-    type: Object
-  },
-  "addedBy.user": {
-    type: String
-  },
-  "addedBy.level": {
+  restaurant_id: {
+    label: "Restaurant ID",
     type: String
   },
   restaurant: {
-    type: Object
+    type: Object,
+    optional: true
   },
   "restaurant.name": {
     type: String
@@ -49,35 +45,52 @@ Item.attachSchema(new SimpleSchema({
   "restaurant.location.type" : {
     type: String,
     defaultValue: "Point"
-  }
+  },
+  addedBy: {
+    type: Object
+  },
+  "addedBy.user": {
+    type: String,
+    defaultValue: this.userId
+  },
+  "addedBy.level": {
+    type: String
+  },
 }));
 
 if (Meteor.isServer) {
   Item.allow({
     insert: function (userId, doc) {
-      return false;
+      if( Roles.userIsInRole(userId, [ "admin" ]) ) {
+        return true;
+      } else if( userId != null ) {
+        doc.approved = false;
+        return true;
+      } else {
+        return false;
+      }
     },
 
     update: function (userId, doc, fieldNames, modifier) {
-      return false;
+      return Roles.userIsInRole(userId, [ "admin" ]);
     },
 
     remove: function (userId, doc) {
-      return false;
+      return Roles.userIsInRole(userId, [ "admin" ]);
     }
   });
 
   Item.deny({
     insert: function (userId, doc) {
-      return true;
+      return userId == null;
     },
 
     update: function (userId, doc, fieldNames, modifier) {
-      return true;
+      return userId == null;
     },
 
     remove: function (userId, doc) {
-      return true;
+      return userId == null;
     }
   });
 }

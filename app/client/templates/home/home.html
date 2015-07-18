@@ -1,5 +1,12 @@
 <template name="Home">
-	<h1>YO!</h1>
-	<button id="login">Login</button>
+	{{ #if currentUser }}
+		{{ #if isInRole 'admin' }}
+			<a href="{{ pathFor "admin" }}">Admin</a>
+		{{ /if }}
+		<button id="logout">Logout</button>
+	{{ else }}
+		<button id="login">Login</button>
+	{{ /if }}
+
 	<!-- {{ > loginButtons }} -->
 </template>
