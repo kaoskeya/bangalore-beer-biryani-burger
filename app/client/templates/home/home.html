@@ -9,5 +9,15 @@
 		<!-- {{ > loginButtons }} -->
 	{{ /if }}
 
+	{{ #each items }}
+		<pre>{{ jsonMe }}</pre>
+		{{ #if licked }}
+			<button class="btn btn-danger unlick">LICKED</button>
+		{{ else }}
+			<button class="btn btn-primary lick">NOT LICKED</button>
+		{{ /if }}
+		<hr />
+	{{ /each }}
+
 	<!-- {{ > loginButtons }} -->
 </template>

@@ -12,12 +12,15 @@ Meteor.startup(function () {
 
 	// On user creation, fetch friends and update
 	Accounts.onCreateUser(function(options, user) {
-		HTTP.get("https://graph.facebook.com/me/friends?access_token=" + user.services.facebook.accessToken, function(error, result){
-			friends = _.map( result.data.data, function(friend){
+		console.log( options, user );
+		if (options.profile)
+			user.profile = options.profile;
+		HTTP.get("https://graph.facebook.com/me/friends?access_token=" + user.services.facebook.accessToken, function(error, result) {
+			friends = _.map( result.data.data, function(friend) {
 				return friend.id;
 			});
-			Meteor.users.update({ _id: user._id }, { $set: { friends: friends } });
-			Meteor.users.update({ _id: friends }, { $push: { friends: user.services.facebook.id } });
+			Meteor.users.update({ _id: user._id }, { $set: { "profile.friends": friends, "profile.licks": [] } });
+			Meteor.users.update({ _id: friends }, { $push: { "profile.friends": user.services.facebook.id } });
 			// TODO: Paginate if required.
 		});
 		return user;
