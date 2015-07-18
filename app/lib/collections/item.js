@@ -15,7 +15,8 @@ Item.attachSchema(new SimpleSchema({
     defaultValue: 0
   },
   voters: {
-    type: String
+    type: [String],
+    defaultValue: []
   },
   type: {
     type: String,
@@ -25,7 +26,7 @@ Item.attachSchema(new SimpleSchema({
     type: Boolean
   },
   restaurant_id: {
-    label: "Restaurant ID",
+    label: "Restaurant",
     type: String
   },
   restaurant: {
@@ -51,12 +52,37 @@ Item.attachSchema(new SimpleSchema({
   },
   "addedBy.user": {
     type: String,
-    defaultValue: this.userId
+    autoValue: function() {
+      return this.userId;
+    }
   },
   "addedBy.level": {
-    type: String
+    type: String,
+    autoValue: function() {
+      if( Roles.userIsInRole(this.userId, [ "admin" ]) ) {
+        return "admin";
+      } else {
+        return "user";
+      }
+    }
   },
 }));
+
+Item.helpers({
+  getRestaurant: function() {
+    return this.restaurant.name;
+  }
+});
+
+Item.before.insert(function(userId, doc) {
+  if( doc.hasOwnProperty("restaurant_id") ) {
+    var restaurant = Restaurant.findOne({ _id: doc.restaurant_id });
+    doc.restaurant = {};
+    doc.restaurant.name = restaurant.name;
+    doc.restaurant.location = restaurant.location;
+  }
+});
+
 
 if (Meteor.isServer) {
   Item.allow({

@@ -10,9 +10,25 @@ kAdminConfig = {
 		Item: {
 			tableColumns: [
 				{ label: 'Name', name: 'name' },
-				{ label: 'Restaurant', name: 'restaurant.name' },
+				{ label: 'Restaurant', name: 'getRestaurant()' },
 			],
-			omitFields: [ "restaurant" ]
-		}
+			omitFields: [ "restaurant" ],
+			templates: {
+				"new": { name: "AdminAddItem" }
+			}
+		},
+		"Meteor.users": { 
+			verbose: "Users",
+			templates: { 
+				"crud": { name: 'kAccountsAdminFluid' },
+				"new": { name: 'yourCustomAdminCreateModule' }
+			} 
+		},
 	}
+}
+
+kAccountsAdminConfig = {
+    tableColumns: [
+        { label: 'Name', name: 'getName()' }
+    ]
 }

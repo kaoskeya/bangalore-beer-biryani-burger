@@ -16,3 +16,6 @@ alanning:roles
 nemo64:bootstrap
 less
 kaoskeya:admin
+kaoskeya:accounts-autoform-admin
+dburles:collection-helpers
+matb33:collection-hooks

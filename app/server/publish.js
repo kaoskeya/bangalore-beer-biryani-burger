@@ -3,3 +3,7 @@
  *  this.ready();
  * });
  */
+
+Meteor.publish("restaurants", function() {
+	return Restaurant.find()
+});
