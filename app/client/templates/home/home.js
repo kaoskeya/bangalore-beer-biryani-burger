@@ -13,15 +13,30 @@ Template.Home.events({
 		if( Meteor.userId() ) {
 			Meteor.users.update({ _id: Meteor.userId() }, { $push: { "profile.licks": self._id } });
 		} else {
-			Meteor.loginWithFacebook({ loginStyle: "popup", requestPermissions: [ "public_profile", "email", "user_friends" ] }, function(error){
-				if( !error ) {
-					if( _.indexOf( Meteor.user().profile.licks, self._id ) == -1 ) {
-						Meteor.users.update({ _id: Meteor.userId() }, { $push: { "profile.licks": self._id } });
-					} else {
-						console.log("Already licked");
+			if(Meteor.isCordova) {
+				facebookConnectPlugin.login([ "public_profile", "email", "user_friends" ],
+					function() {
+						if( _.indexOf( Meteor.user().profile.licks, self._id ) == -1 ) {
+							Meteor.users.update({ _id: Meteor.userId() }, { $push: { "profile.licks": self._id } });
+						} else {
+							console.log("Already licked");
+						}
+					},
+					function() {
+						console.log('Error while logging in.');
 					}
-				}
-			});
+				);
+			} else {
+				Meteor.loginWithFacebook({ loginStyle: "popup", requestPermissions: [ "public_profile", "email", "user_friends" ] }, function(error){
+					if( !error ) {
+						if( _.indexOf( Meteor.user().profile.licks, self._id ) == -1 ) {
+							Meteor.users.update({ _id: Meteor.userId() }, { $push: { "profile.licks": self._id } });
+						} else {
+							console.log("Already licked");
+						}
+					}
+				});
+			}
 		}
 	},
 	'click .unlick': function(e) {

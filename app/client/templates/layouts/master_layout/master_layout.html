@@ -31,9 +31,7 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="xrestaurant">{{ restaurant.name }}</div>
-                    <div class="ximage">
-                        <img src="{{ getImage }}" />
-                    </div>
+                    <div class="ximage" style="background-image: url({{ getImage }}); background-size: cover;"></div>
                     <div class="xtitle">{{ name }}</div>
                     <div class="xsbuttons">
                         <div class="xsocial">

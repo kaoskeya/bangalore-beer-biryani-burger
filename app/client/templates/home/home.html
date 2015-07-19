@@ -13,8 +13,7 @@
 		<div class="xlist">
 			{{ #each items }}
 				<div class="xitem">
-					<a class="ximgarea" data-toggle="modal" data-target="#xitemModal" data-item-id="{{ _id }}" id="item_{{ _id }}">
-						<img src="{{ getImage }}" />
+					<a class="ximgarea" data-toggle="modal" data-target="#xitemModal" data-item-id="{{ _id }}" id="item_{{ _id }}" style="background-image: url({{ getImage }}); background-size: cover;">
 						<div class="xnumlicks"><i class="material-icons">&#xE87D;</i>{{ votes }}</div>
 					</a>
 					<a class="xlickarea">
