@@ -32,9 +32,14 @@
 			{{ /each }}
 			{{ #unless items }}
 				<div class="xbtmbuffer">
-					<div class="xend">we're afraid we have nothing for you :(</div>
+					<div class="xend">you haven't licked any food yet :(</div>
 				</div>
 			{{ /unless }}
+			{{ #if items }}
+				<div class="xbtmbuffer">
+					<div class="xend">that's all folks :)</div>
+				</div>
+			{{ /if }}
 		</div>
 	</div>
 	<br /><br /><br />

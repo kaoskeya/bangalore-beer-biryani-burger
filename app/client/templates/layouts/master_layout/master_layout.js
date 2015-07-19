@@ -28,6 +28,7 @@ Template.xtabs.events({
 						$(".g-sel").removeClass("g-sel");
 						$(elem).addClass("g-sel");
 						Router.go("home", { category: $(elem).data("show-id") });
+						$(window).scrollTop(0);
 					}
 				});
 			// }
@@ -35,6 +36,7 @@ Template.xtabs.events({
 			Session.set( "category", $(elem).data("show-id") );
 			$(".g-sel").removeClass("g-sel");
 			$(elem).addClass("g-sel");
+			$(window).scrollTop(0);
 		}
 	}
 });
