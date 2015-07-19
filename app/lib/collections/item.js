@@ -8,7 +8,8 @@ Item.attachSchema(new SimpleSchema({
     type: String
   },
   photos: {
-    type: [String]
+    type: [String],
+    optional: true
   },
   votes: {
     type: Number,
