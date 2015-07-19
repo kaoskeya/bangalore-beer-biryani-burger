@@ -160,6 +160,7 @@ button, a.xbt {
 }
 
 @icon-height: 28px;
+@icon-path: 'images/';
 
 .xtabs {
     .c-fx;
@@ -203,20 +204,25 @@ button, a.xbt {
             padding: (@icon-height / 4);
             border-radius: 8px;
 
-            &.beer:after {
-                content: '\e87E';
+            height: (@icon-height + (@icon-height / 2)); 
+            background-repeat: no-repeat;
+            background-size: @icon-height;
+            background-position: center;
+
+            &.beer {
+                background-image: url('@{icon-path}icon-beer.png');
             }
 
-            &.burger:after {
-                content: '\e033';
+            &.burger {
+                background-image: url('@{icon-path}icon-burger.png');
             }
 
-            &.biryani:after {
-                content: '\e8E0';
+            &.biryani {
+                background-image: url('@{icon-path}icon-biryani.png');
             }
 
-            &.me:after {
-                content: '\e87C';
+            &.me {
+                background-image: url('@{icon-path}icon-me.png');
             }
         }
 
@@ -243,7 +249,7 @@ button, a.xbt {
 .xlickfn() {
     float: right;
     width: @lick-width;
-    height: @lick-height;
+    height: @lick-height !important;
 
     color: #aaa;
 
@@ -252,14 +258,21 @@ button, a.xbt {
     line-height: 1.2;
 
     text-align: center;
-    padding: 13px 12px 12px;
+    // padding: 13px 12px 12px;
     border-radius: 4px;
 
     cursor: pointer;
 
+    height: (@icon-height + (@icon-height / 2)); 
+    background-repeat: no-repeat;
+    background-size: @icon-height;
+    background-position: center;
+    background-image: url('@{icon-path}lick-orig-grey.png');
+
+    /*
     &:after {
         content: '\e87D';
-    }
+    } */
 
     &:hover {
         background-color: #f8f8f8;
@@ -268,6 +281,7 @@ button, a.xbt {
 
     &.e-licked {
         color: #F50057;
+        background-image: url('@{icon-path}lick-orig-variant.png');
     }
 }
 
@@ -337,11 +351,19 @@ button, a.xbt {
                 color: #fff;
                 border-radius: 4px;
 
-                .material-icons {
+                .lick-icons {
                     display: block;
                     float: left;
                     font-size: 16px;
                     padding: 5px 4px 5px 0;
+
+
+                    height: (16px + 10px); 
+                    width: (16px + 10px); 
+                    background-repeat: no-repeat;
+                    background-size: 16px;
+                    background-position: center;
+                    background-image: url('@{icon-path}lick-orig-white.png');
                 }
             }
         }
@@ -415,6 +437,12 @@ button, a.xbt {
         text-align: center;
         padding: 14px 12px;
         border-radius: 100px;
+
+
+        background-repeat: no-repeat;
+        background-size: @icon-height;
+        background-position: center;
+        background-image: url('@{icon-path}icon-close.png');
 
         cursor: pointer;
         z-index: 3001;
@@ -506,16 +534,27 @@ button, a.xbt {
                     float: left;
                     width: (@lick-height - 18px - 2px);
                     height: (@lick-height - 18px - 2px);
-                    border-radius: 100px;
-                    margin-right: 10px;
+                    padding: 1px;
+                    color: #444;
+                    cursor: pointer;
+                    border-radius: 4px;
+
+                    & > i {
+                        display: block;
+                        font-size: 28px;
+                    }
+
+                    &:hover {
+                        background-color: #eee;
+                    }
                 }
 
                 .xfb {
-                    background-color: RGBA(58, 87, 149, 0.6);
+                    color: #3A5795;
                 }
 
                 .xtw {
-                    background-color: RGBA(58, 87, 149, 0.6);
+                    color: #59ADEB;
                 }
             }
 

@@ -36,8 +36,8 @@
                     <div class="xsbuttons">
                         <div class="xsocial">
                             <div class="xslabel">Share on</div>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=http://slurrp.xyz/{{ type }}?item={{ _id }}" target="_blank"><div class="xfb"></div></a>
-                            <a href="https://twitter.com/home?status=http://slurrp.xyz/{{ type }}?item={{ _id }}%20{{ name }}%20at%20{{ restaurant.name }}%20%23slurrp" target="_blank"><div class="xtw"></div></a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=http://slurrp.xyz/{{ type }}?item={{ _id }}" target="_blank"><div class="xfb"><i class="icon-facebook-squared"></i></div></a>
+                            <a href="https://twitter.com/home?status=http://slurrp.xyz/{{ type }}?item={{ _id }}%20{{ name }}%20at%20{{ restaurant.name }}%20%23slurrp" target="_blank"><div class="xtw"><i class="icon-twitter"></i></div></a>
                         </div>
                         <div class="xlickbar">
                             {{ #if licked }}
@@ -102,6 +102,6 @@
         {{ /with }}
     </div>
     <div class="floatingxbutton-wrapper">
-        <div class="floatingxbutton"><i class="material-icons">&#xE5CD;</i></div>
+        <div class="floatingxbutton"><i class="lick-icons"></i></div>
     </div>
 </template>
