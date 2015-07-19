@@ -6,5 +6,9 @@ HomeController = RouteController.extend({
 
   action: function() {
     this.render('Home');
+  },
+
+  data: function() {
+  	return { hash: this.params.query.item }
   }
 });

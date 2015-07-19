@@ -1,23 +1,41 @@
 <template name="Home">
-	{{ #if currentUser }}
-		{{ #if isInRole 'admin' }}
-			<a href="{{ pathFor "admin" }}">Admin</a>
-		{{ /if }}
-		<button id="logout">Logout</button>
-	{{ else }}
-		<button id="login">Login</button>
-		<!-- {{ > loginButtons }} -->
-	{{ /if }}
+    <div class="xview">
 
-	{{ #each items }}
-		<pre>{{ jsonMe }}</pre>
-		{{ #if licked }}
-			<button class="btn btn-danger unlick">LICKED</button>
+<!-- 		{{ #if currentUser }}
+			{{ #if isInRole 'admin' }}
+				<a href="{{ pathFor "admin" }}">Admin</a>
+			{{ /if }}
+			<button id="logout">Logout</button>
 		{{ else }}
-			<button class="btn btn-primary lick">NOT LICKED</button>
+			<button id="login">Login</button>
 		{{ /if }}
-		<hr />
-	{{ /each }}
-
-	<!-- {{ > loginButtons }} -->
+ -->		<!-- {{ > loginButtons }} -->
+		<div class="xlist">
+			{{ #each items }}
+				<div class="xitem">
+					<a class="ximgarea" data-toggle="modal" data-target="#xitemModal" data-item-id="{{ _id }}" id="item_{{ _id }}">
+						<img src="{{ getImage }}" />
+						<div class="xnumlicks"><i class="material-icons">&#xE87D;</i>{{ votes }}</div>
+					</a>
+					<a class="xlickarea">
+						{{ #if licked }}
+							<div class="xlick e-licked unlick"></div>
+						{{ else }}
+							<div class="xlick lick"></div>
+						{{ /if }}
+					</a>
+					<a class="xtxtarea" data-toggle="modal" data-target="#xitemModal" data-item-id="{{ _id }}">
+						<div class="xtitle">{{ name }}</div>
+						<div class="xrestaurant">{{ restaurant.name }}</div>
+					</a>
+				</div>
+			{{ /each }}
+			{{ #unless items }}
+				<div class="xbtmbuffer">
+					<div class="xend">we're afraid we have nothing for you :(</div>
+				</div>
+			{{ /unless }}
+		</div>
+	</div>
+	<br /><br /><br />
 </template>

@@ -4,7 +4,7 @@ Router.configure({
   notFoundTemplate: 'NotFound'
 });
 
-Router.route('/', {
+Router.route('/:category?', {
   name: 'home',
   controller: 'HomeController',
   action: 'action',

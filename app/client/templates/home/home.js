@@ -31,7 +31,7 @@ Template.Home.events({
 		} else {
 			Meteor.loginWithFacebook({ loginStyle: "popup", requestPermissions: [ "public_profile", "email", "user_friends" ] });
 		}
-	},
+	}
 });
 
 /*****************************************************************************/
@@ -39,16 +39,20 @@ Template.Home.events({
 /*****************************************************************************/
 Template.Home.helpers({
 	items: function() {
-		return Item.find()
-	},
-	jsonMe: function() {
-		return JSON.stringify( this, false, 4 );
+		if( Session.equals("category", "profile") ) {
+			return Item.find({ _id: { $in: Meteor.user().profile.licks } }, { sort: { votes: -1 } }).fetch();
+		} else {
+			return Item.find({}, { sort: { votes: -1 } }).fetch();
+		}
 	},
 	licked: function() {
 		if( Meteor.user() )
 			return _.indexOf( Meteor.user().profile.licks, this._id ) != -1;
 		else
 			return false;
+	},
+	getImage: function() {
+		return this.photos[0];
 	}
 });
 
@@ -57,10 +61,35 @@ Template.Home.helpers({
 /*****************************************************************************/
 Template.Home.created = function () {
 	var instance = this;
-	this.subscribe("items", { type: "Burger" });
+	Session.set("category", (Session.get("category") == undefined)?"Beer":Session.get("category") );
 };
 
 Template.Home.rendered = function () {
+	var instance = this;
+
+	instance.autorun(function(){
+		instance.subscribe("items", { type: Session.get("category") }, function(){
+		    if( instance.data.hash ) {
+		    	Meteor.setTimeout(function(){
+				    $( "#item_" + instance.data.hash ).trigger("click");
+		    	}, 100);
+		    }
+		});
+	});
+
+	$('#xitemModal').on('show.bs.modal', function (e) {
+		$('.xtabs').addClass('g-hidden');
+		$('.floatingxbutton-wrapper').addClass('g-show');
+		Session.set( "item", $(e.relatedTarget).data("item-id") );
+		instance.openItem = Meteor.subscribe("item", $(e.relatedTarget).data("item-id"));
+	});
+	$('#xitemModal').on('hide.bs.modal', function (e) {
+		$('.floatingxbutton-wrapper').removeClass('g-show');
+		$('.xtabs').removeClass('g-hidden');
+		Session.set( "item" );
+		instance.openItem.stop();
+	});
+
 };
 
 Template.Home.destroyed = function () {
