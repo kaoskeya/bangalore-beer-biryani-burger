@@ -67,7 +67,7 @@ Template.Home.created = function () {
 Template.Home.rendered = function () {
 	var instance = this;
 
-	instance.autorun(function(){
+	instance.autorun(function() {
 		instance.subscribe("items", { type: Session.get("category") }, function(){
 		    if( instance.data.hash ) {
 		    	Meteor.setTimeout(function(){

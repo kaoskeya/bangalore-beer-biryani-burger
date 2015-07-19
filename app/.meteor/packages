@@ -24,3 +24,5 @@ reywood:publish-composite
 reactive-var
 momentjs:moment
 spiderable
+reywood:iron-router-ga
+meteorhacks:kadira

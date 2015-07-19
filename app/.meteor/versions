@@ -22,6 +22,7 @@ dburles:google-maps@1.1.1
 ddp@1.1.0
 deps@1.0.7
 ejson@1.0.6
+email@1.0.6
 facebook@1.2.0
 fastclick@1.0.3
 geojson-utils@1.0.3
@@ -49,11 +50,14 @@ logging@1.0.7
 matb33:collection-hooks@0.7.13
 meteor@1.1.6
 meteor-platform@1.2.2
+meteorhacks:kadira@2.22.0
+meteorhacks:meteorx@1.3.1
 minifiers@1.1.5
 minimongo@1.0.8
 mobile-status-bar@1.0.3
 momentjs:moment@2.8.4
 mongo@1.1.0
+mongo-livedata@1.0.8
 nemo64:bootstrap@3.3.5_2
 nemo64:bootstrap-data@3.3.5
 oauth@1.1.4
@@ -65,6 +69,7 @@ reactive-dict@1.1.0
 reactive-var@1.0.5
 reload@1.1.3
 retry@1.0.3
+reywood:iron-router-ga@0.6.0
 reywood:publish-composite@1.3.6
 routepolicy@1.0.5
 sacha:spin@2.0.4
