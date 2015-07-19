@@ -5,3 +5,8 @@ App.info({
 });
 
 App.accessRule("*");
+
+App.configurePlugin('com.phonegap.plugins.facebookconnect', {
+	APP_ID: "1462398360747963",
+	APP_NAME: "Slurrp"
+});

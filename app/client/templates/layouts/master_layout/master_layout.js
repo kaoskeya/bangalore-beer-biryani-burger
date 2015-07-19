@@ -9,19 +9,19 @@ Template.xtabs.events({
 		var elem = e.currentTarget;
 		if( $(elem).data("show-id") == "profile" && Meteor.user() == undefined ) {
 
-			if(Meteor.isCordova) {
-				facebookConnectPlugin.login([ "public_profile", "email", "user_friends" ],
-					function() {
-						Session.set( "category", $(elem).data("show-id") );
-						$(".g-sel").removeClass("g-sel");
-						$(elem).addClass("g-sel");
-						Router.go("home", { category: $(elem).data("show-id") });
-					},
-					function() {
-						console.log('Error while logging in.');
-					}
-				);
-			} else {
+			// if(Meteor.isCordova) {
+			// 	facebookConnectPlugin.login([ "public_profile", "email", "user_friends" ],
+			// 		function() {
+			// 			Session.set( "category", $(elem).data("show-id") );
+			// 			$(".g-sel").removeClass("g-sel");
+			// 			$(elem).addClass("g-sel");
+			// 			Router.go("home", { category: $(elem).data("show-id") });
+			// 		},
+			// 		function() {
+			// 			console.log('Error while logging in.');
+			// 		}
+			// 	);
+			// } else {
 				Meteor.loginWithFacebook({ loginStyle: "popup", requestPermissions: [ "public_profile", "email", "user_friends" ] }, function(error){
 					if( !error ) {
 						Session.set( "category", $(elem).data("show-id") );
@@ -30,7 +30,7 @@ Template.xtabs.events({
 						Router.go("home", { category: $(elem).data("show-id") });
 					}
 				});
-			}
+			// }
 		} else {
 			Session.set( "category", $(elem).data("show-id") );
 			$(".g-sel").removeClass("g-sel");
@@ -51,22 +51,22 @@ Template.xmodals.events({
 		if( Meteor.userId() ) {
 			Meteor.users.update({ _id: Meteor.userId() }, { $push: { "profile.licks": self._id } });
 		} else {
-			if(Meteor.isCordova) {
-				facebookConnectPlugin.login([ "public_profile", "email", "user_friends" ],
-					function() {
-						Meteor.setTimeout(function(){
-							if( _.indexOf( Meteor.user().profile.licks, self._id ) == -1 ) {
-								Meteor.users.update({ _id: Meteor.userId() }, { $push: { "profile.licks": self._id } });
-							} else {
-								console.log("Already licked");
-							}
-						}, 300);
-					},
-					function() {
-						console.log('Error while logging in.');
-					}
-				);
-			} else {
+			// if(Meteor.isCordova) {
+			// 	facebookConnectPlugin.login([ "public_profile", "email", "user_friends" ],
+			// 		function() {
+			// 			Meteor.setTimeout(function(){
+			// 				if( _.indexOf( Meteor.user().profile.licks, self._id ) == -1 ) {
+			// 					Meteor.users.update({ _id: Meteor.userId() }, { $push: { "profile.licks": self._id } });
+			// 				} else {
+			// 					console.log("Already licked");
+			// 				}
+			// 			}, 300);
+			// 		},
+			// 		function() {
+			// 			console.log('Error while logging in.');
+			// 		}
+			// 	);
+			// } else {
 				Meteor.loginWithFacebook({ loginStyle: "popup", requestPermissions: [ "public_profile", "email", "user_friends" ] }, function(error){
 					if( !error ) {
 						Meteor.setTimeout(function(){
@@ -78,7 +78,7 @@ Template.xmodals.events({
 						}, 300);
 					}
 				});
-			}
+			// }
 		}
 	},
 	'click .unlick': function(e) {
@@ -86,31 +86,31 @@ Template.xmodals.events({
 		if( Meteor.userId() ) {
 			Meteor.users.update({ _id: Meteor.userId() }, { $pull: { "profile.licks": self._id } });
 		} else {
-			if(Meteor.isCordova) {
-				facebookConnectPlugin.login([ "public_profile", "email", "user_friends" ],
-					function() {
-					},
-					function() {
-						console.log('Error while logging in.');
-					}
-				);
-			} else {
+			// if(Meteor.isCordova) {
+			// 	facebookConnectPlugin.login([ "public_profile", "email", "user_friends" ],
+			// 		function() {
+			// 		},
+			// 		function() {
+			// 			console.log('Error while logging in.');
+			// 		}
+			// 	);
+			// } else {
 				Meteor.loginWithFacebook({ loginStyle: "popup", requestPermissions: [ "public_profile", "email", "user_friends" ] });
-			}
+			// }
 		}
 	},
 	'click .login': function() {
-		if(Meteor.isCordova) {
-			facebookConnectPlugin.login([ "public_profile", "email", "user_friends" ],
-				function() {
-				},
-				function() {
-					console.log('Error while logging in.');
-				}
-			);
-		} else {
+		// if(Meteor.isCordova) {
+		// 	facebookConnectPlugin.login([ "public_profile", "email", "user_friends" ],
+		// 		function() {
+		// 		},
+		// 		function() {
+		// 			console.log('Error while logging in.');
+		// 		}
+		// 	);
+		// } else {
 			Meteor.loginWithFacebook({ loginStyle: "popup", requestPermissions: [ "public_profile", "email", "user_friends" ] });
-		}
+		// }
 	}
 });
 

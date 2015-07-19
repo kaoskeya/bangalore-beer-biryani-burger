@@ -10,7 +10,6 @@ aldeed:simple-schema
 aldeed:collection2
 aldeed:autoform
 yogiben:autoform-map
-accounts-facebook
 accounts-ui
 alanning:roles
 nemo64:bootstrap
